@@ -1,9 +1,9 @@
 const getDetails = () => {
   let index = 0;
   const questions = [
-    'Please enter name',
-    'Please enter DOB',
-    'Please enter hobbies'
+    'Please enter name :',
+    'Please enter DOB :',
+    'Please enter hobbies :'
   ]
   return () => {
     console.log(questions[index]);
