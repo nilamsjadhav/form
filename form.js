@@ -1,10 +1,12 @@
 const display = () => {
   let index = 0;
   const questions = {
-    name: 'Please enter name :',
-    DOB: 'Please enter DOB :',
-    hobbies: 'Please enter hobbies :',
-    phoneNo: 'Please phone number :'
+    name: 'Please enter name ',
+    DOB: 'Please enter DOB ',
+    hobbies: 'Please enter hobbies ',
+    phoneNo: 'Please phone number ',
+    address1: 'Enter address line 1 ',
+    address2: 'Enter address line 2 '
   }
 
   const questionsList = Object.keys(questions);
@@ -18,10 +20,11 @@ const display = () => {
 
 const displayDetails = (inputs) => {
   const args = inputs.map(record => record[1]);
-  const [name, DOB, hobbiesList, phoneNum] = args;
+  const [name, DOB, hobbiesList, phoneNum, ...giveAddress] = args;
   const hobbies = hobbiesList.split(',');
 
-  console.log(JSON.stringify({ name, DOB, hobbies, phoneNum }));
+  const address = giveAddress.join('\n')
+  console.log(JSON.stringify({ name, DOB, hobbies, phoneNum, address }));
   console.log('Thank you');
 };
 
@@ -46,7 +49,7 @@ const isNameValid = (name) => {
 }
 
 const isDOBValid = (date) => {
-  const regex = /\d{4}-\d{1,2}-\d{1,2}/;
+  const regex = /\d{4}-\d{1,2}-\d{1,2}/g;
   return regex.test(date);
 };
 
@@ -68,6 +71,7 @@ const assertInput = (question, answer) => {
   if (question[0] === 'phoneNo') {
     return answer.length === 10;
   }
+  return true;
 };
 
 const main = () => {
@@ -77,14 +81,14 @@ const main = () => {
   let question = displayQuestion();
   readLines((answer) => {
     if (!assertInput(question, answer)) {
-      console.log(`Please enter ${question[0]} again :`);
+      console.log(`${question[1]}again`);
       return;
     }
 
     args.push([question, answer]);
     question = displayQuestion();
 
-    if (args.length === 4) {
+    if (args.length === 6) {
       displayDetails(args);
       process.exit();
     }
