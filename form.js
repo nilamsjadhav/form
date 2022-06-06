@@ -48,9 +48,14 @@ const isNameValid = (name) => {
   return name.length >= 5;
 }
 
+const isValid = (number) => {
+  return /^\d{1,2}$/.test(number);
+};
+
+
 const isDOBValid = (date) => {
-  const regex = /\d{4}-\d{1,2}-\d{1,2}/g;
-  return regex.test(date);
+  const [year, month, day] = date.split('-');
+  return year.length === 4 && isValid(month) && isValid(day)
 };
 
 const isHobbiesValid = (hobbies) => {
