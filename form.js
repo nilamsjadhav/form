@@ -1,20 +1,22 @@
-const getDetails = () => {
+const display = () => {
   let index = 0;
-  const questions = [
-    'Please enter name :',
-    'Please enter DOB :',
-    'Please enter hobbies :'
-  ]
+  const questions = {
+    name: 'Please enter name :',
+    DOB: 'Please enter DOB :',
+    hobbies: 'Please enter hobbies :'
+  }
+
+  const questionsList = Object.keys(questions);
   return () => {
-    const question = questions[index];
-    console.log(question);
+    const currentQue = questionsList[index];
+    console.log(questions[currentQue]);
     index++;
-    return question;
+    return [currentQue, questions[currentQue]];
   }
 };
 
 const displayDetails = (inputs) => {
-  const args = inputs.map(record => record[0]);
+  const args = inputs.map(record => record[1]);
   const [name, DOB, hobbiesList] = args;
   const hobbies = hobbiesList.split(',');
 
@@ -23,13 +25,10 @@ const displayDetails = (inputs) => {
 };
 
 const readLines = (storeDetails) => {
-  const recordDetails = getDetails();
-
-  let question = recordDetails();
   process.stdin.setEncoding('utf8');
+
   process.stdin.on('data', (chunk) => {
-    storeDetails(question, chunk);
-    question = recordDetails();
+    storeDetails(chunk.trim());
   });
 
   process.stdin.on('end', () => {
@@ -41,11 +40,45 @@ const readLines = (storeDetails) => {
   });
 };
 
+const isNameValid = (name) => {
+  return name.length >= 5;
+}
+
+const isDOBValid = (date) => {
+  const regex = /\d{4}-\d{1,2}-\d{1,2}/;
+  return regex.test(date);
+};
+
+const isHobbiesValid = (hobbies) => {
+  const hobbiesList = hobbies.split(',');
+  return hobbiesList.length > 0;
+};
+
+const assertInput = (question, answer) => {
+  if (question[0] === 'name') {
+    return isNameValid(answer);
+  }
+  if (question[0] === 'DOB') {
+    return isDOBValid(answer);
+  }
+  if (question[0] === 'hobbies') {
+    return isHobbiesValid(answer);
+  }
+};
+
 const main = () => {
   const args = [];
+  const displayQuestion = display();
 
-  readLines((question, answer) => {
-    args.push([question, answer.trim()]);
+  let question = displayQuestion();
+  readLines((answer) => {
+    if (!assertInput(question, answer)) {
+      console.log(`Please enter ${question[0]} again :`);
+      return;
+    }
+
+    args.push([question, answer]);
+    question = displayQuestion();
 
     if (args.length === 3) {
       displayDetails(args);
