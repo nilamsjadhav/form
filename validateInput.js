@@ -16,17 +16,17 @@ const areHobbiesValid = (hobbies) => {
   return hobbiesList.length > 0;
 };
 
-const assertInput = (question, answer) => {
-  if (question === 'name') {
+const assertInput = (field, answer) => {
+  if (field === 'name') {
     return isNameValid(answer);
   }
-  if (question === 'DOB') {
+  if (field === 'DOB') {
     return isDOBValid(answer);
   }
-  if (question === 'hobbies') {
+  if (field === 'hobbies') {
     return areHobbiesValid(answer);
   }
-  if (question === 'phoneNo') {
+  if (field === 'phoneNo') {
     return answer.length === 10;
   }
   return true;
