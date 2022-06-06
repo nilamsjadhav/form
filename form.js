@@ -1,15 +1,7 @@
 const { assertInput } = require('./validateInput.js');
 
-const display = () => {
+const display = (questions) => {
   let index = 0;
-  const questions = {
-    name: 'Please enter name ',
-    DOB: 'Please enter DOB ',
-    hobbies: 'Please enter hobbies ',
-    phoneNo: 'Please phone number ',
-    address1: 'Enter address line 1 ',
-    address2: 'Enter address line 2 '
-  };
 
   const questionsList = Object.keys(questions);
   return () => {
@@ -46,9 +38,9 @@ const readLines = (storeDetails) => {
   });
 };
 
-const main = () => {
+const createForm = (questions) => {
   const args = [];
-  const displayQuestion = display();
+  const displayQuestion = display(questions);
 
   let question = displayQuestion();
   readLines((answer) => {
@@ -67,5 +59,16 @@ const main = () => {
   })
 };
 
-main();
+const main = () => {
+  const questions = {
+    name: 'Please enter name ',
+    DOB: 'Please enter DOB ',
+    hobbies: 'Please enter hobbies ',
+    phoneNo: 'Please phone number ',
+    address1: 'Enter address line 1 ',
+    address2: 'Enter address line 2 '
+  };
+  createForm(questions);
+};
 
+main();
