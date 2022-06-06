@@ -6,13 +6,16 @@ const getDetails = () => {
     'Please enter hobbies :'
   ]
   return () => {
-    console.log(questions[index]);
+    const question = questions[index];
+    console.log(question);
     index++;
+    return question;
   }
 };
 
 const displayDetails = (inputs) => {
-  const [name, DOB, hobbiesList] = inputs;
+  const args = inputs.map(record => record[0]);
+  const [name, DOB, hobbiesList] = args;
   const hobbies = hobbiesList.split(',');
 
   console.log(JSON.stringify({ name, DOB, hobbies }));
@@ -21,12 +24,12 @@ const displayDetails = (inputs) => {
 
 const readLines = (storeDetails) => {
   const recordDetails = getDetails();
-  recordDetails();
 
+  let question = recordDetails();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', (chunk) => {
-    recordDetails();
-    storeDetails(chunk);
+    storeDetails(question, chunk);
+    question = recordDetails();
   });
 
   process.stdin.on('end', () => {
@@ -41,8 +44,8 @@ const readLines = (storeDetails) => {
 const main = () => {
   const args = [];
 
-  readLines((input) => {
-    args.push(input.trim())
+  readLines((question, answer) => {
+    args.push([question, answer.trim()]);
 
     if (args.length === 3) {
       displayDetails(args);
