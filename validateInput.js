@@ -16,20 +16,24 @@ const areHobbiesValid = (hobbies) => {
   return hobbiesList.length > 0;
 };
 
-const assertInput = (field, answer) => {
-  if (field === 'name') {
-    return isNameValid(answer);
+const isAddressValid = (address) => address;
+
+const isPhoneNumberValid = (phoneNo) => phoneNo.length === 10;
+
+const assertInput = (field, input) => {
+  const validations = {
+    name: isNameValid(input),
+    DOB: isDOBValid(input),
+    hobbies: areHobbiesValid(input),
+    phoneNo: isPhoneNumberValid(input),
+    address1: isAddressValid(input),
+    address2: isAddressValid(input)
+  };
+
+  if (validations[field]) {
+    return true;
   }
-  if (field === 'DOB') {
-    return isDOBValid(answer);
-  }
-  if (field === 'hobbies') {
-    return areHobbiesValid(answer);
-  }
-  if (field === 'phoneNo') {
-    return answer.length === 10;
-  }
-  return true;
+  return false;
 };
 
 exports.assertInput = assertInput;
