@@ -1,6 +1,6 @@
 const isNameValid = (name) => {
   return name.length >= 5;
-}
+};
 
 const isValid = (number) => {
   return /^\d{1,2}$/.test(number);
@@ -8,25 +8,25 @@ const isValid = (number) => {
 
 const isDOBValid = (date) => {
   const [year, month, day] = date.split('-');
-  return year.length === 4 && isValid(month) && isValid(day)
+  return year.length === 4 && isValid(month) && isValid(day);
 };
 
-const isHobbiesValid = (hobbies) => {
+const areHobbiesValid = (hobbies) => {
   const hobbiesList = hobbies.split(',');
   return hobbiesList.length > 0;
 };
 
 const assertInput = (question, answer) => {
-  if (question[0] === 'name') {
+  if (question === 'name') {
     return isNameValid(answer);
   }
-  if (question[0] === 'DOB') {
+  if (question === 'DOB') {
     return isDOBValid(answer);
   }
-  if (question[0] === 'hobbies') {
-    return isHobbiesValid(answer);
+  if (question === 'hobbies') {
+    return areHobbiesValid(answer);
   }
-  if (question[0] === 'phoneNo') {
+  if (question === 'phoneNo') {
     return answer.length === 10;
   }
   return true;
