@@ -3,7 +3,8 @@ const display = () => {
   const questions = {
     name: 'Please enter name :',
     DOB: 'Please enter DOB :',
-    hobbies: 'Please enter hobbies :'
+    hobbies: 'Please enter hobbies :',
+    phoneNo: 'Please phone number :'
   }
 
   const questionsList = Object.keys(questions);
@@ -17,10 +18,10 @@ const display = () => {
 
 const displayDetails = (inputs) => {
   const args = inputs.map(record => record[1]);
-  const [name, DOB, hobbiesList] = args;
+  const [name, DOB, hobbiesList, phoneNum] = args;
   const hobbies = hobbiesList.split(',');
 
-  console.log(JSON.stringify({ name, DOB, hobbies }));
+  console.log(JSON.stringify({ name, DOB, hobbies, phoneNum }));
   console.log('Thank you');
 };
 
@@ -64,6 +65,9 @@ const assertInput = (question, answer) => {
   if (question[0] === 'hobbies') {
     return isHobbiesValid(answer);
   }
+  if (question[0] === 'phoneNo') {
+    return answer.length === 10;
+  }
 };
 
 const main = () => {
@@ -80,7 +84,7 @@ const main = () => {
     args.push([question, answer]);
     question = displayQuestion();
 
-    if (args.length === 3) {
+    if (args.length === 4) {
       displayDetails(args);
       process.exit();
     }
