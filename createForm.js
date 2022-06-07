@@ -35,12 +35,13 @@ const createForm = (questions) => {
   form.display();
 
   readLines((input) => {
+    if (form.isInputValid(input)) {
+      form.storeAnswer(input);
+    }
+
     if (form.hasQuestionsOver()) {
       structureDetails(form);
       process.exit();
-    }
-    if (form.isInputValid(input)) {
-      form.storeAnswer(input);
     }
     form.display();
   });
