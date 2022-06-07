@@ -1,14 +1,12 @@
-const isNameValid = (name) => {
-  return name.length >= 5;
-};
+const isNameValid = (name) => name.length >= 5;
 
-const isValid = (number) => {
-  return /^\d{1,2}$/.test(number);
-};
+const isValid = (number) => isFinite(number) && number.length === 2;
+
+const isYearValid = (year) => isFinite(year) && year.length === 4;
 
 const isDOBValid = (date) => {
   const [year, month, day] = date.split('-');
-  return year.length === 4 && isValid(month) && isValid(day);
+  return isYearValid(year) && isValid(month) && isValid(day);
 };
 
 const areHobbiesValid = (hobbies) => {

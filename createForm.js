@@ -1,7 +1,7 @@
 const { Form } = require('./form.js');
 const fs = require('fs');
 
-const writeData = (userInfo) => {
+const writeDetails = (userInfo) => {
   fs.writeFileSync('./userDetail.json', JSON.stringify(userInfo));
 };
 
@@ -10,7 +10,7 @@ const structureDetails = (form) => {
   const address = userInfo.address1 + '\n' + userInfo.address2;
   const hobbies = userInfo.hobbies.split(',');
   const { name, phoneNo, DOB } = userInfo;
-  writeData({ name, DOB, hobbies, phoneNo, address });
+  return { name, DOB, hobbies, phoneNo, address };
 };
 
 const readLines = (storeDetails) => {
@@ -40,7 +40,8 @@ const createForm = (questions) => {
     }
 
     if (form.hasQuestionsOver()) {
-      structureDetails(form);
+      const organizedDetails = structureDetails(form);
+      writeDetails(organizedDetails);
       process.exit();
     }
     form.display();
@@ -52,7 +53,7 @@ const main = () => {
     name: 'Please enter name ',
     DOB: 'Please enter DOB ',
     hobbies: 'Please enter hobbies ',
-    phoneNo: 'Please phone number ',
+    phoneNo: 'Please enter phone number ',
     address1: 'Enter address line 1 ',
     address2: 'Enter address line 2 '
   };
