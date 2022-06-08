@@ -34,4 +34,7 @@ const assertInput = (field, input) => {
   return false;
 };
 
-exports.assertInput = assertInput;
+module.exports = {
+  isDOBValid, isNameValid, isPhoneNumberValid, areHobbiesValid,
+  isAddressValid, assertInput
+};
