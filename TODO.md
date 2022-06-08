@@ -1,15 +1,15 @@
 - ### Do
-  - [ ] write data into json.
   - [ ] print `Thank you` message at end.
   - [ ] test validator functions
   - [ ] test field class.
   - [ ] take phone number as input.
   - [ ] take address as input.
-  - [ ] mock `console.log`. 
   - [ ] Not sure about map in getAllResponse.
 
 - ### Done
 
+  - [x] write data into json.
+  - [x] mock `console.log`. 
   - [x] write a function that will give field name.
   - [x] write a function to get all info from form.
   - [x] test registerResponse.

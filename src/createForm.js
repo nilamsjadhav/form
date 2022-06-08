@@ -1,4 +1,4 @@
-const registerResponse = (form, response, logger) => {
+const registerResponse = (form, response, logger, writeData) => {
   try {
     form.fillResponse(response);
   } catch (error) {
@@ -7,7 +7,8 @@ const registerResponse = (form, response, logger) => {
 
   if (form.isFormFilled()) {
     process.stdin.destroy();
-    return form.getAllResponses();
+    writeData(form.getAllResponses());
+    return;
   }
   logger(form.getCurrentPrompt());
 };
