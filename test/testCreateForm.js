@@ -55,4 +55,15 @@ describe('registerResponse', () => {
     registerResponse(form, 'abc', logger, identity);
     assert.deepStrictEqual(response, ['Invalid response', 'Enter name']);
   });
+
+  it('should give \'Thank you\' after writing into file', () => {
+    const nameField = new Field('name', 'Enter name', identity);
+    const form = new Form(nameField);
+
+    const response = [];
+    const logger = (content) => response.push(content);
+
+    registerResponse(form, 'abc', logger, identity);
+    assert.deepStrictEqual(response, ['Thank you']);
+  });
 });

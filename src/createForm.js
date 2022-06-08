@@ -8,6 +8,7 @@ const registerResponse = (form, response, logger, writeData) => {
   if (form.isFormFilled()) {
     process.stdin.destroy();
     writeData(form.getAllResponses());
+    logger('Thank you');
     return;
   }
   logger(form.getCurrentPrompt());

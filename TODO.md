@@ -1,13 +1,12 @@
 - ### Do
-  - [ ] print `Thank you` message at end.
   - [ ] test validator functions
   - [ ] test field class.
-  - [ ] take phone number as input.
   - [ ] take address as input.
-  - [ ] Not sure about map in getAllResponse.
 
 - ### Done
 
+  - [x] take phone number as input.
+  - [x] print `Thank you` message at end.
   - [x] write data into json.
   - [x] mock `console.log`. 
   - [x] write a function that will give field name.
