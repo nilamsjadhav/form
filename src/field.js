@@ -1,12 +1,12 @@
 class Field {
-  #field;
+  #name;
   #prompt;
   #validator;
   #parser;
   #response;
 
-  constructor(field, prompt, validator, parser = (response) => response) {
-    this.#field = field;
+  constructor(name, prompt, validator, parser = (response) => response) {
+    this.#name = name;
     this.#prompt = prompt;
     this.#validator = validator;
     this.#parser = parser;
@@ -27,6 +27,16 @@ class Field {
 
   fill(answer) {
     this.#response = answer;
+  }
+
+  isFilled() {
+    return this.getResponse();
+  }
+
+  getInfo() {
+    const name = this.#name;
+    const response = this.#parser(this.getResponse());
+    return { name, response };
   }
 }
 

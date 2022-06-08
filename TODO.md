@@ -1,11 +1,21 @@
-- ### Do  
-  - [ ] Change process.exit() and put process.stdin.destroy().
-  - [ ] Change the name of function storeAnswer.
-  - [ ] display function doesn't convey meaning clearly.
-  - [ ] No need of passing fields to form class retrieve form object.
+- ### Do
+  - [ ] write data into json.
+  - [ ] print `Thank you` message at end.
+  - [ ] test validator functions
+  - [ ] test field class.
+  - [ ] take phone number as input.
+  - [ ] take address as input.
+  - [ ] mock `console.log`. 
+  - [ ] Not sure about map in getAllResponse.
 
 - ### Done
 
+  - [x] write a function that will give field name.
+  - [x] write a function to get all info from form.
+  - [x] test registerResponse.
+  - [ ] ~~No need of passing fields to form class retrieve form object.~~
+  - [x] Change the name of function storeAnswer.
+  - [x] Change process.exit() to process.stdin.destroy().
   - [x] create field class.
   - [x] Create directory structure
   - [x] Refactored date validation function.

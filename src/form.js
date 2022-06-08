@@ -1,7 +1,7 @@
 class Form {
   #fields;
   #index;
-  constructor(fields) {
+  constructor(...fields) {
     this.#fields = fields;
     this.#index = 0;
   }
@@ -24,9 +24,18 @@ class Form {
     this.#index++;
   }
 
+  getAllResponses() {
+    const entries = {};
+    this.#fields.forEach(field => {
+      const { name, response } = field.getInfo();
+      entries[name] = response;
+    });
+    return entries;
+  }
+
   isFormFilled() {
-    return this.#fields.every(field => field.getResponse());
+    return this.#fields.every(
+      field => field.isFilled());
   }
 }
-
 exports.Form = Form;
