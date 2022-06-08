@@ -21,7 +21,10 @@ class Form {
       throw new Error('err');
     }
     field.fill(answer);
-    this.#index++;
+
+    if (field.isFilled()) {
+      this.#index++;
+    }
   }
 
   getAllResponses() {
@@ -38,4 +41,5 @@ class Form {
       field => field.isFilled());
   }
 }
+
 exports.Form = Form;

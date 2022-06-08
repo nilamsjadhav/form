@@ -13,10 +13,6 @@ class Field {
     this.#response = null;
   }
 
-  getResponse() {
-    return this.#response;
-  }
-
   getPrompt() {
     return this.#prompt;
   }
@@ -30,13 +26,19 @@ class Field {
   }
 
   isFilled() {
-    return this.getResponse();
+    return this.#response;
   }
 
   getInfo() {
     const name = this.#name;
-    const response = this.#parser(this.getResponse());
+    const response = this.#parser(this.#response);
     return { name, response };
+  }
+
+  equals(anotherField) {
+    return anotherField instanceof Field &&
+      this.#name === anotherField.#name &&
+      this.#prompt === this.#prompt;
   }
 }
 

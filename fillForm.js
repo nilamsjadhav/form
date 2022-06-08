@@ -12,6 +12,7 @@ const fillForm = (logger, writeData) => {
 
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', (response) => {
+
     registerResponse(form, response.trim(), logger, writeData);
   });
 };

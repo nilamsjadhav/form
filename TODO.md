@@ -1,10 +1,10 @@
 - ### Do
   - [ ] test validator functions
-  - [ ] test field class.
-  - [ ] take address as input.
 
 - ### Done
 
+  - [x] take address as input.
+  - [x] test field class.
   - [x] take phone number as input.
   - [x] print `Thank you` message at end.
   - [x] write data into json.
