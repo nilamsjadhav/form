@@ -3,17 +3,17 @@ const assert = require('assert');
 
 describe('Field', () => {
 
-  describe('equals', () => {
+  describe('equalFields', () => {
     it('should equate two instance of field.', () => {
       const field1 = new Field('name', 'enter name');
       const field2 = new Field('name', 'enter name');
-      assert.ok(field1.equals(field2));
+      assert.ok(field1.equalFields(field2));
     });
 
     it('should not equate two instance of field.', () => {
       const field1 = new Field('name', 'enter name');
       const field2 = new Field('age', 'enter age');
-      assert.equal(field1.equals(field2), false);
+      assert.equal(field1.equalFields(field2), false);
     });
   });
 

@@ -11,9 +11,11 @@ const fillForm = (logger, writeData) => {
   logger(form.getCurrentPrompt());
 
   process.stdin.setEncoding('utf8');
-  process.stdin.on('data', (response) => {
+  process.stdin.on('data', (chunk) => {
 
-    registerResponse(form, response.trim(), logger, writeData);
+    const responses = chunk.trim().split('\n');
+    responses.forEach(response =>
+      registerResponse(form, response, logger, writeData));
   });
 };
 

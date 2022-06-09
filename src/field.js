@@ -35,7 +35,7 @@ class Field {
     return { name, response };
   }
 
-  equals(anotherField) {
+  equalFields(anotherField) {
     return anotherField instanceof Field &&
       this.#name === anotherField.#name &&
       this.#prompt === this.#prompt;
